@@ -1,32 +1,24 @@
-# Prerequisites
-*.d
+# build output
+dist/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# generated types
+.astro/
 
-# Precompiled Headers
-*.gch
-*.pch
+# dependencies
+node_modules/
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Fortran module files
-*.mod
-*.smod
+# environment variables
+.env
+.env.production
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+# macOS-specific files
+.DS_Store
 
-# Executables
-*.exe
-*.out
-*.app
+# jetbrains setting folder
+.idea/
