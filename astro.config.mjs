@@ -13,7 +13,7 @@ export default defineConfig({
   },
 
   site: 'https://sylian1337.github.io/',
-  base: 'Testing-Websie',
+  base: 'Test-Website',
   integrations: [
     react(), 
     starlight({
