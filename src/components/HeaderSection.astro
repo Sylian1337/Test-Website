@@ -1,0 +1,92 @@
+---
+import SylCoreFrontLogo from '../assets/Front-SylCore-Without-Background.png';
+import { links } from '../config/config';
+import { shields } from '../config/config';
+---
+
+<header>
+    <section class="text-white p-30 shadow-lg headerSection">
+        <div class="max-w-7xl mx-auto">
+            <!-- <img class="mx-auto pb-2" src={SylCoreFrontLogo.src} width="350" height="350"/>-->
+            <img class="mx-auto pb-2" src={SylCoreFrontLogo.src} width="350" height="350"/>
+            <hr class="opacity-25 m-5"/>
+
+            <p class=" text-center text-2xl mb-8">
+                Complete Open Source Emulator For World Of Warcraft 3.3.5a
+            </p>
+
+            <!-- Getting started button. -->
+            <div class="flex justify-center pt-5">
+                <a href="/install">
+                    <button onclick="" class="text-lg bg-[#6667EC] text-white px-4 py-2 rounded 
+                            transition-colors duration-200 hover:bg-blue-600" >
+                        Getting Started
+                    </button>
+                </a>
+            </div>
+
+            <!-- Guide button(s). -->
+            <div class="flex justify-center pt-2 gap-2">
+                <a href="/guides/requirements">
+                    <button class="text-lg bg-[#6667EC] text-white px-4 py-2 rounded 
+                            transition-colors duration-200 hover:bg-blue-600">
+                        Written Guide 📖
+                    </button>
+                </a>
+
+                
+                <button class="text-lg bg-[#6667EC] text-white px-4 py-2 rounded 
+                        transition-colors duration-200 hover:bg-blue-600">
+                    Video Guide 🎞️
+                </button>
+            </div>
+
+            <!--  Shields for Github  -->
+            <div class="flex justify-center pt-5 gap-2">
+                <a href={links.githubStars}>
+                    <img src={shields.githubStars}>
+                </a>
+                <a href={links.githubWatchers}>
+                    <img src={shields.githubWatchers}>
+                </a>
+                <a href={links.githubContributors}>
+                    <img src={shields.githubContributors}>
+                </a>
+            </div>
+
+            <!--  Shield for Discord  -->
+            <div class="flex justify-center pt-2">
+                <a href={links.discord}>
+                    <img src={shields.discord}>
+                </a>
+            </div>
+        </div>
+    </section>
+
+</header>
+
+
+<!-- This style is the normal color I have used  -->
+<style>
+
+    .headerSection{
+        background-color: #232323;
+
+
+    }
+</style>
+
+<!-- Show Jesper this when he gets online.
+<style>
+
+    .headerSection{
+        background-color: #232323;
+
+
+    }
+
+
+
+</style>
+
+-->

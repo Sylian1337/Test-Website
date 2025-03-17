@@ -1,0 +1,55 @@
+---
+import DocsIcon from '../assets/Docs-Icon.png';
+import DiscordIcon from '../assets/mdi--discord.png';
+import GithubIcon from '../assets/mdi--github.png';
+import SylCoreNavLogo from '../assets/Side-SylCore-Transparent.png';
+---
+
+<nav>
+    <div class="nav-content inline-flex">
+        <a href="sylcore.org">
+            <img src={SylCoreNavLogo.src} height="50" width="93"/>
+        </a>
+
+        <div class="inline-flex gap-4">
+            <a href="https://github.com/SylCore/SylCore-WoTLK" class="gap-1 inline-flex items-center">
+                <img src={GithubIcon.src} width="28" height="28" />
+                <p class="font-bold text-white">Github</p>
+            </a>
+
+
+            <a href="https://discord.gg/BQBD5MqspY" class="gap-1 inline-flex items-center">
+                <img src={DiscordIcon.src} width="24" height="24"/>
+                <p class="font-bold text-white">Discord</p>
+            </a>
+            <a href="#elunadocs" class="inline-flex items-center">
+                <img src={DocsIcon.src} height="24" width="24">
+            
+                </img>
+                <p class="font-bold text-white">Eluna Docs</p>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<style>
+
+    .navigationBar {
+        
+        
+    }
+
+    .nav-content {
+        display: flex;           /* Makes children align horizontally */
+        justify-content: space-between;  /* Pushes logo left and links right */
+        align-items: center;     /* Centers items vertically */
+        padding: 0 300px;         /* Adds some spacing on the sides */
+        height: 70px;           /* Or whatever height you want */
+    }
+
+
+    .nav-links-content{
+        gap: 15px
+    }
+</style>

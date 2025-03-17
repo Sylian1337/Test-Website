@@ -1,0 +1,101 @@
+---
+title: Windows Core Installation
+description: Get started with SylCore WoTLK Server
+
+---
+
+## Pulling & Compiling the source
+---
+
+### Pulling the code
+   1. Create the directory where the source files will be located. In this guide, we will use **C:\SylCore**.
+   2. Open up Github Desktop
+   3. Click **File** -> **Clone repository**... in the top left
+   4. Click **URL**
+   5. Fill in the data as follow:
+   ```
+   Repository URL or GitHub username and repository: https://github.com/SylCore/SylCore-WoTLK
+   Local path: C:\SylCore
+   ```
+   6. Click **Clone**. Within a few minutes, SylCore's source files will be cloned into **C:\SylCore**.
+---
+
+### Configuring and generating Visual C++ solution with CMake
+   :::caution[Important!]
+   Before you begin, create a new directory called **Build**. In this guide, we will use **C:\Build**.
+   :::
+   1. Open **CMake**
+   2. Click **Browse Source**... → Select the source directory (**C:\SylCore**)
+   3. Click **Browse Build**... → Select the build directory (**C:\Build**)
+   4. Click **Configure**.
+   5. In the dropdown menu, choose the version of the compiler you downloaded in the [Requirements](/guides/requirements) section. Be sure to choose the **Win64** version if you work on a 64-bit compilation.
+   6. Make sure that **Use default native compilers** is checked.
+   7. Click **Finish**.
+   8. Make sure **TOOLS_BUILD** is set to all. This will compile the extractors needed later in the setup.
+   9. Click **Configure** again. As long as you have error(s) typed in red in the log window you will need to check your parameters and re-run it.
+   10. Click **Generate**. This will install the selected build files into your **C:\Build** folder.
+   :::danger[NOTE]
+   If you encounter any errors in CMake, see the [Common Errors](Add Link Here).
+   :::
+---
+
+
+### Compiling the Source
+   1. In CMake press **Open Project** to open the **SylCore.sln** file directly with Visual Studio.
+   2. In the menu at the top, click **Build** and select **Configuration Manager**.
+      - Set Active Solution Configuration to **RelWithDebInfo**.
+      - Set **Active Solution Platform** to **x64** and then click Close (settings automatically save).
+   3. Right-click **ALL_BUILD** in the Solution Explorer on the right sidebar and select **Clean**.
+   4. Right-click **ALL_BUILD** and select **Build**. (Ctrl + Shift + B)
+      - If your GUI does not show Solution Explorer, click the Build menu and select **Clean Solution**, and then **Build**.
+   
+   :::caution[Important]
+   Build time differs from machine to machine, but you can expect it to take between 5 and 30 minutes.
+
+   If you are asked to "Reload build files" during or after the compilation, do so.
+   :::
+   
+   When the build is complete you will find a message in the output that looks similar to this:
+```plaintext
+========== Build: 22 succeeded, 0 failed, 0 up-to-date, 1 skipped ==========
+```
+
+---
+
+### Moving the DLL files
+You will find your freshly compiled binaries in the **C:\Build\bin\RelWithDebInfo** or **C:\Build\bin\Debug** folder. These are all used to run your server at the end of this instruction.
+
+You will need the following files in order for the core to function properly:
+   
+   When the build is complete you will find a message in the output that looks similar to this:
+```plaintext
+\configs\
+authserver.exe
+authserver.pbd
+worldserver.exe
+worldserver.pdb
+libmysql.dll
+legacy.dll
+libcrypto-3-x64.dll
+libssl-3-x64.dll
+```
+There are four DLL files that need to be manually added to this folder, and you need to copy them from the following directories:
+:::caution[DLL Locations]
+   **libmysql.dll** → `C:\Program Files\MySQL\MySQL Server 8.X\lib`
+
+   **legacy.dll**, **libcrypto-3-x64.dll** and **libssl-3-x64.dll** → `C:\OpenSSL-Win64\bin`
+:::
+
+In the **configs** folder you should find:
+```plaintext
+authserver.conf.dist
+worldserver.conf.dist
+gameplay.conf.dist
+```
+---
+
+#### Help
+---
+If you get stuck at any point, please feel free to join our Discord.
+
+   - [Join Our Discord](https://discord.gg/BQBD5MqspY) **NOTE:** SylCore Discord is not a 24/7 support server, so be respectful towards staff and other members!

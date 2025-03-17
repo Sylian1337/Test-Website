@@ -1,0 +1,91 @@
+---
+title: Windows Requirements
+description: Get started with SylCore WoTLK Server
+
+---
+
+## Requirements
+
+First, to make us able to download, compile and run SylCore, we need to download a few tools/programs for this.
+
+:::caution[Tools Needed]
+1. Windows ≥ 10
+2. Boost ≥ 1.78
+3. OpenSSL ≥ 3.x.x
+4. MySQL ≥ 8.0 (Recommended 8.4)
+5. CMake ≥ 3.27
+6. Microsoft Visual Studio (Community) ≥ 17 (2022) (Desktop) (No preview)
+7. Git
+8. Github Desktop
+:::
+---
+
+### [Git](https://git-scm.com/downloads/win)
+   - Download the standalone installer (Choose the version that matches your system)
+      - During Git installation - Adjust your PATH environment. Pick "Git from the command line and also from 3rd-party software".
+
+
+### [Github Desktop](https://github.com/apps/desktop)
+   - Download the installer and follow the steps to set it up.
+
+
+### [Visual Studio Community 2022 IDE](https://visualstudio.microsoft.com/downloads/)
+   - Download the "Community" version.
+   - You will also need to install the C++ compiler, this is done while installing VS.
+      - Go to **Workloads** -> **Desktop & Mobile**
+
+   ![](/public/Selecting-C++-Desktop.png)
+
+### [MySQL Server Community Edition](https://dev.mysql.com/downloads/mysql/8.4.html)
+   - Download the Windows MSI Installer.
+   - You will be asked to login or signup, you can scroll down to the bottom and click "No thanks, just start my download".
+   - When the installation is almost done, make sure "Launch the MySQL Instance Configuration Wizard" is checked, then click "Finish".
+   - When the MySQL Instance Configuration Wizard launches, most default options are fine, but remember the username and password you use (root // whatever). You will need them to log into your chosen database management tool (below) in order to import SQL files later.
+   - To test if MySQL is set up correctly, hit CTRL+ALT+DEL on your keyboard, enter the Task Manager, and select the "Services" tab. In the list of services you should see "MySQL" with a status of "Running".
+   - Add MySQL to Environment Variables.
+      - Go to Control Panel -> System
+      - Go to Advanced System Settings
+      - Go to Environment Variables
+      - Under "Systemvariables" select **Path**
+      - Edit and add your install path of MySQL, i.e **C:/Program Files/MySQL/MySQL Server 8.0/bin/**
+   - Make sure to find the MySQL development files; you'll need them later. These files are shipped with MySQL Server, search for them in the program files directory, MySQL\MySQL Server 8.0\lib / MySQL\MySQL Server 8.4\lib.
+
+
+
+
+### [HeidiSQL](https://www.heidisql.com/download.php)
+   - After the install, open HeidiSQL, and you will see a window like this.
+   
+   ![](/public/HeidiSQL-First-Image.png)
+   - Now click on the the **"New"** button.
+   - Next, enter your MySQL login details that you used when you did step 4.
+      - Before clicking on the **"Open"**, remember to click on **"Save"**, to save the details for the login.
+   - If you fail to connect to your MySQL database, make sure its running inside the **services** tab on Windows, if you are not sure where to do this, head to the **troubleshooting** section of the install guide!
+
+
+### [CMake](https://cmake.org/download/)
+   - Download and install the Latest Release windows-x86_64.msi file, NEVER the RC (Release Candidate) versions.
+   - We recommend compiling in 64-bit mode.
+
+### [OpenSSL](https://slproweb.com/products/Win32OpenSSL.html)
+   - Find the 64-bit version by finding the latest 3.x.x Win64 OpenSSL that is NOT the "light" version. (Example: Win64 OpenSSL v3.0.7)
+   :::danger[Important!]
+      **Note:** If you get the error 'Missing Microsoft Visual C++ .... Redistributable' while installing OpenSSL, [download the Microsoft Visual C++ 2017/2019/2022 Redistributable Package (x64) (Direct Download) (1.7MB Installer)](https://aka.ms/vs/17/release/vc_redist.x64.exe) and install it.
+      
+      **Note:** While installing OpenSSL, choose The OpenSSL binaries (/bin) directory (NOT "The Windows system directory") when given the choice of where to copy the OpenSSL DLLs. These DLLs will need to be located easily for [Core Installation]().
+   :::
+
+### [Boost](https://www.boost.org)
+   - Download the prebuilt Windows Binary for Visual Studio 2022. [64bit](https://sourceforge.net/projects/boost/files/boost-binaries/1.81.0/boost_1_81_0-msvc-14.3-64.exe/download)
+   - Add an environment variable to the "System" variable named "BOOST_ROOT" and with the value being your Boost installation directory, e.g. C:/local/boost_1_81_0. Important is to use '/', not '\' when pointing to the directory. (Make sure that it does not have a trailing slash (end of the path). If you still get problems, add the same variable in the USER variables section too, as shown in the image below.).
+
+![](/public/Setting-Boost-In-Variables.png)
+:::danger[Important!]
+   **Note:** Notice that this image shows the version number 1.81.0 - use your actual version number in your settings..
+:::
+
+#### Help
+---
+If you get stuck at any point, please feel free to join our Discord.
+
+   - [Join Our Discord](https://discord.gg/BQBD5MqspY) **NOTE:** SylCore Discord is not a 24/7 support server, so be respectful towards staff and other members!
