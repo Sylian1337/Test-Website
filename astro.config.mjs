@@ -17,8 +17,8 @@ export default defineConfig({
   integrations: [
     react(), 
     starlight({
-      //favicon: '/src/assets/SylCore-LogoOnly-Without-BG.png',
-      favicon: 'assets/SylCore-LogoOnly-Without-BG.png',
+      favicon: '/src/assets/SylCore-LogoOnly-Without-BG.png',
+      //favicon: 'assets/SylCore-LogoOnly-Without-BG.png',
       title: 'SylCore Docs',
       description: 'Documentation for SylCore',
       
