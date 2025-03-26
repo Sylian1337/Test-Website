@@ -11,7 +11,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-
+  
   //site: 'https://sylian1337.github.io/',
   site: 'https://sylcore.org/',
   //base: 'Test-Website',
