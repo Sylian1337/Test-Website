@@ -19,7 +19,6 @@ export default defineConfig({
     react(), 
     starlight({
       favicon: '/src/assets/SylCore-LogoOnly-Without-BG.png',
-      //favicon: 'assets/SylCore-LogoOnly-Without-BG.png',
       title: 'SylCore Docs',
       description: 'Documentation for SylCore',
       
@@ -27,14 +26,14 @@ export default defineConfig({
         {
           label: 'SylCore Installation',
           items: [
-            //{ label: 'Requirements', link: 'guides/requirements' },
-            { label: 'Requirements', link: 'Test-Website/guides/requirements' },
-            //{ label: 'Installation', link: 'guides/installation' },
-            { label: 'Installation', link: 'Test-Website/guides/installation' },
-            //{ label: 'Server Setup', link: 'guides/server-setup' },
-            { label: 'Server Setup', link: 'Test-Website/guides/server-setup' },
-            //{ label: 'Final Server Steps', link: 'guides/final-server-steps' },
-            { label: 'Final Server Steps', link: 'Test-Website/guides/final-server-steps' },
+            { label: 'Requirements', link: 'guides/requirements' },
+            //{ label: 'Requirements', link: 'Test-Website/guides/requirements' },
+            { label: 'Installation', link: 'guides/installation' },
+            //{ label: 'Installation', link: 'Test-Website/guides/installation' },
+            { label: 'Server Setup', link: 'guides/server-setup' },
+            //{ label: 'Server Setup', link: 'Test-Website/guides/server-setup' },
+            { label: 'Final Server Steps', link: 'guides/final-server-steps' },
+            //{ label: 'Final Server Steps', link: 'Test-Website/guides/final-server-steps' },
             //{ label: 'Troubleshooting', link: 'guides/troubleshooting' },
           ],
         },
