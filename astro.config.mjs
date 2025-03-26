@@ -13,7 +13,7 @@ export default defineConfig({
   },
   
   //site: 'https://sylian1337.github.io/',
-  site: 'https://sylcore.org/',
+  site: 'https://sylcore.org',
   //base: 'Test-Website',
   integrations: [
     react(), 
