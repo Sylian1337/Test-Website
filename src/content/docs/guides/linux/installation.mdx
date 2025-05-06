@@ -1,0 +1,128 @@
+---
+title: Linux Core Installation
+description: Get started with SylCore WoTLK Server
+
+---
+
+## Set Up Directory Structure
+Create the main installation directory:
+```bash
+# Create the installation directory in your home folder
+mkdir -p ~/SylCore
+```
+---
+
+### Clone Repository
+Clone the SylCore WoTLK repository from GitHub:
+```bash
+# Clone the repository
+git clone https://github.com/SylCore/SylCore-WoTLK.git
+
+# Check that the repository was successfully cloned
+ls -la SylCore-WoTLK
+```
+---
+
+### Build SylCore
+Compile and install SylCore:
+```bash
+# Enter the repository directory
+cd SylCore-WoTLK
+
+# Create and enter the build directory
+mkdir -p build
+cd build
+
+# Configure the build with CMake
+cmake ../ -DCMAKE_INSTALL_PREFIX=~/SylCore -DCMAKE_C_COMPILER=/usr/bin/clang \
+-DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DWITH_WARNINGS=1 -DSCRIPTS=static -DMODULES=static
+
+# Compile SylCore (replace 4 with the number of CPU cores you want to use)
+make -j4
+
+# Install SylCore
+make install
+
+# Return to the home directory
+cd ~/
+```
+---
+
+
+### Download Data Files
+Download and extract the required WoW 3.3.5a data files:
+```bash
+# Create the data directory
+mkdir -p ~/SylCore/bin
+
+# Navigate to the bin directory
+cd ~/SylCore/bin
+
+# Download WoW 3.3.5a data files
+wget https://github.com/SylCore/WoW-3.3.5a-Data/releases/download/Release/data.zip
+
+# Extract the data files
+unzip data.zip
+
+# Return to the home directory
+cd ~/
+```
+---
+
+### Configure SylCore
+Set up the configuration files:
+```bash
+# Navigate to the configuration directory
+cd ~/SylCore/etc
+
+# Create configuration files from templates
+for file in *.conf.dist; do 
+    if [ ! -f "${file%.conf.dist}.conf" ]; then
+        cp "$file" "${file%.conf.dist}.conf"
+        echo "Created config file: ${file%.conf.dist}.conf"
+    else
+        echo "Config file already exists: ${file%.conf.dist}.conf - keeping existing configuration"
+    fi
+done
+
+# Update the DataDir path in worldserver.conf
+# Replace "DataDir = \".\""" with "DataDir = \"~/SylCore/bin/\""
+sed -i "s#DataDir = \".\"#DataDir = \"$HOME/SylCore/bin/\"#g" worldserver.conf
+
+# Return to the home directory
+cd ~/
+```
+---
+
+### Set Up Databases
+Configure MySQL and create the required databases:
+```bash
+# Make sure MySQL service is running
+sudo systemctl start mysql
+
+# Create a temporary SQL file with the necessary commands
+cat > setup_db.sql << 'EOF'
+DROP USER IF EXISTS 'acore'@'localhost';
+CREATE USER 'acore'@'localhost' IDENTIFIED BY 'acore' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0;
+GRANT ALL PRIVILEGES ON * . * TO 'acore'@'localhost' WITH GRANT OPTION;
+CREATE DATABASE IF NOT EXISTS `acore_world` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS `acore_characters` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS `acore_auth` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8mb4_unicode_ci;
+GRANT ALL PRIVILEGES ON `acore_world` . * TO 'acore'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON `acore_characters` . * TO 'acore'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON `acore_auth` . * TO 'acore'@'localhost' WITH GRANT OPTION;
+EOF
+
+# Execute the SQL commands
+sudo mysql < setup_db.sql
+
+# Remove the temporary file
+rm setup_db.sql
+```
+---
+
+#### Help
+---
+If you get stuck at any point, please feel free to join our Discord.
+
+   - [Join Our Discord](https://discord.gg/BQBD5MqspY) **NOTE:** SylCore Discord is not a 24/7 support server, so be respectful towards staff and other members!

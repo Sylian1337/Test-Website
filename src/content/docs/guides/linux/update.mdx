@@ -1,0 +1,96 @@
+---
+title: Optional instructions
+description: Get started with SylCore WoTLK Server on Linux
+
+---
+
+### Building Modules (Optional)
+To build and install optional modules:
+
+```bash
+# Navigate to the repository directory
+cd ~/SylCore-WoTLK
+
+# Make sure the build directory exists
+mkdir -p build
+cd build
+
+# Configure the build with CMake for modules
+cmake ../ -DCMAKE_INSTALL_PREFIX=~/SylCore -DCMAKE_C_COMPILER=/usr/bin/clang \
+-DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DWITH_WARNINGS=1 -DSCRIPTS=static -DMODULES=static
+
+# Compile SylCore with modules (replace 4 with the number of CPU cores you want to use)
+make -j4
+
+# Install SylCore with modules
+make install
+
+# Set up module configuration files
+cd ~/SylCore/etc/modules
+for file in *.conf.dist; do 
+    if [ ! -f "${file%.conf.dist}.conf" ]; then
+        cp "$file" "${file%.conf.dist}.conf"
+        echo "Created module config file: ${file%.conf.dist}.conf"
+    else
+        echo "Module config file already exists: ${file%.conf.dist}.conf - keeping existing configuration"
+    fi
+done
+
+# Return to the home directory
+cd ~/
+```
+---
+
+### Updating SylCore
+To update SylCore to the latest version:
+
+```bash
+# First, properly stop any running servers 
+if tmux has-session -t worldserver 2>/dev/null; then
+    tmux send-keys -t worldserver "server shutdown" C-m
+    echo "Sent shutdown command to worldserver, waiting 30 seconds..."
+    sleep 30
+fi
+
+if tmux has-session -t authserver 2>/dev/null; then
+    tmux send-keys -t authserver "exit" C-m
+    echo "Sent exit command to authserver, waiting 5 seconds..."
+    sleep 5
+fi
+
+# Verify servers are stopped
+if tmux has-session -t worldserver 2>/dev/null || tmux has-session -t authserver 2>/dev/null; then
+    echo "Warning: Some servers might still be running. Please stop them manually before continuing."
+    echo "You can check running sessions with: tmux ls"
+fi
+
+# Create a backup
+mkdir -p ~/SylCore/backup_$(date +%Y%m%d_%H%M%S)
+cp -r ~/SylCore/etc/*.conf ~/SylCore/backup_$(date +%Y%m%d_%H%M%S)/
+
+# Navigate to the repository directory
+cd ~/SylCore-WoTLK
+
+# Save any local changes
+git stash
+
+# Get the latest changes
+git fetch origin
+git pull origin master  # or whatever branch you're using
+
+# Rebuild SylCore
+mkdir -p build
+cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=~/SylCore -DCMAKE_C_COMPILER=/usr/bin/clang \
+-DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DWITH_WARNINGS=1 -DSCRIPTS=static -DMODULES=static
+make -j4
+make install
+```
+---
+
+
+#### Help
+---
+If you get stuck at any point, please feel free to join our Discord.
+
+   - [Join Our Discord](https://discord.gg/BQBD5MqspY) **NOTE:** SylCore Discord is not a 24/7 support server, so be respectful towards staff and other members!

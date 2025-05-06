@@ -1,0 +1,38 @@
+---
+title: Linux Requirements
+description: Get started with SylCore WoTLK Server on Linux
+---
+
+## Requirements
+
+This guide provides step-by-step instructions for manually installing SylCore WoTLK on a Linux system.
+While we offer an automatic installation script, this manual guide is for users who prefer to understand
+and control each step of the installation process
+
+:::caution[Tools Needed]
+1. Ubuntu 24.04 (tested and recommended)
+2. Basic knowledge of Linux command-line operations
+3. Administrator (sudo) privileges
+4. Stable internet connection
+:::
+---
+
+### Dependencies
+
+First, we need to install all required packages for SylCore:
+
+```bash
+# Update package lists
+sudo apt-get update
+
+# Install required dependencies
+sudo apt-get install -y git cmake make gcc g++ clang libmysqlclient-dev \
+libssl-dev libbz2-dev libreadline-dev libncurses-dev mysql-server \
+libboost-all-dev unzip
+```
+---
+#### Help
+---
+If you get stuck at any point, please feel free to join our Discord.
+
+   - [Join Our Discord](https://discord.gg/BQBD5MqspY) **NOTE:** SylCore Discord is not a 24/7 support server, so be respectful towards staff and other members!

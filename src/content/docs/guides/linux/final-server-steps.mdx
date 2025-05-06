@@ -1,0 +1,70 @@
+---
+title: Final Server Steps
+description: Get started with SylCore WoTLK Server on Linux
+
+---
+
+### Initialize Servers
+Initialize the auth and world servers for the first time:
+
+```bash
+# Navigate to the bin directory
+cd ~/SylCore/bin
+
+# Start the authserver
+# Wait until you see "Authserver initialized successfully. Ready for connections!" message
+# Then press Ctrl+C to stop it
+./authserver
+
+# Start the worldserver
+# Wait until you see "World initialized" message
+# Then press Ctrl+C to stop it
+./worldserver
+
+# Return to the home directory
+cd ~/
+```
+---
+
+### Configure Server IP
+Set up your server IP for client connections:
+
+```bash
+# Show current IP setting
+sudo mysql -e "SELECT address FROM acore_auth.realmlist WHERE id = 1\G"
+
+# Update the IP address (replace 192.168.1.100 with your actual server IP)
+sudo mysql -e "UPDATE acore_auth.realmlist SET address = '192.168.1.100' WHERE id = 1;" acore_auth
+
+# Verify the change
+sudo mysql -e "SELECT address FROM acore_auth.realmlist WHERE id = 1\G"
+```
+---
+
+### First Start
+Starting the servers:
+
+```bash
+# Navigate to the bin directory
+cd ~/SylCore/bin
+
+# Start the authserver in a detached tmux session
+tmux new-session -d -s authserver './authserver'
+
+# Check that the authserver session is running
+tmux ls
+
+# Start the worldserver in interactive mode
+./worldserver
+```
+---
+
+Congratulations! You have now manually installed SylCore WoTLK on your Linux system. If you encounter
+any issues during the installation or startup process, please visit our GitHub repository for additional
+information and support.
+
+#### Help
+---
+If you get stuck at any point, please feel free to join our Discord.
+
+   - [Join Our Discord](https://discord.gg/BQBD5MqspY) **NOTE:** SylCore Discord is not a 24/7 support server, so be respectful towards staff and other members!
