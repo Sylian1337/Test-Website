@@ -19,11 +19,8 @@ cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=~/SylCore -DCMAKE_C_COMPILER=/usr/bin/clang \
 -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DWITH_WARNINGS=1 -DSCRIPTS=static -DMODULES=static
 
-# Compile SylCore with modules (replace 4 with the number of CPU cores you want to use)
-make -j4
-
-# Install SylCore with modules
-make install
+# Compile and install SylCore (replace 4 with the number of CPU cores you want to use)
+make -j4 && make install
 
 # Set up module configuration files
 cd ~/SylCore/etc/modules
@@ -83,8 +80,9 @@ mkdir -p build
 cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=~/SylCore -DCMAKE_C_COMPILER=/usr/bin/clang \
 -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DWITH_WARNINGS=1 -DSCRIPTS=static -DMODULES=static
-make -j4
-make install
+
+# Compile and install SylCore (replace 4 with the number of CPU cores you want to use)
+make -j4 && make install
 ```
 ---
 

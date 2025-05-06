@@ -51,11 +51,15 @@ cd ~/SylCore/bin
 # Start the authserver in a detached tmux session
 tmux new-session -d -s authserver './authserver'
 
-# Check that the authserver session is running
+# Start the worldserver in a detached tmux session
+tmux new-session -d -s worldserver './worldserver'
+
+# Check that the authserver and worldserver session is running
 tmux ls
 
-# Start the worldserver in a detached tmux session
-tmux new-session -d -s worldserver'./worldserver'
+# Open tmux sessions
+tmux session-attach -t authserver
+tmux session-attach -t worldserver
 ```
 ---
 

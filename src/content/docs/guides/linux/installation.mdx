@@ -37,11 +37,8 @@ cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=~/SylCore -DCMAKE_C_COMPILER=/usr/bin/clang \
 -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DWITH_WARNINGS=1 -DSCRIPTS=static -DMODULES=static
 
-# Compile SylCore (replace 4 with the number of CPU cores you want to use)
-make -j4
-
-# Install SylCore
-make install
+# Compile and install SylCore (replace 4 with the number of CPU cores you want to use)
+make -j4 && make install
 
 # Return to the home directory
 cd ~/
@@ -52,9 +49,6 @@ cd ~/
 ### Download Data Files
 Download and extract the required WoW 3.3.5a data files:
 ```bash
-# Create the data directory
-mkdir -p ~/SylCore/bin
-
 # Navigate to the bin directory
 cd ~/SylCore/bin
 
@@ -98,10 +92,8 @@ cd ~/
 Configure MySQL and create the required databases:
 ```bash
 # Make sure MySQL service is running
-sudo systemctl start mysql
+sudo mysql
 
-# Create a temporary SQL file with the necessary commands
-cat > setup_db.sql << 'EOF'
 DROP USER IF EXISTS 'acore'@'localhost';
 CREATE USER 'acore'@'localhost' IDENTIFIED BY 'acore' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0;
 GRANT ALL PRIVILEGES ON * . * TO 'acore'@'localhost' WITH GRANT OPTION;
@@ -111,7 +103,6 @@ CREATE DATABASE IF NOT EXISTS `acore_auth` DEFAULT CHARACTER SET UTF8MB4 COLLATE
 GRANT ALL PRIVILEGES ON `acore_world` . * TO 'acore'@'localhost' WITH GRANT OPTION;
 GRANT ALL PRIVILEGES ON `acore_characters` . * TO 'acore'@'localhost' WITH GRANT OPTION;
 GRANT ALL PRIVILEGES ON `acore_auth` . * TO 'acore'@'localhost' WITH GRANT OPTION;
-EOF
 
 ```
 ---
