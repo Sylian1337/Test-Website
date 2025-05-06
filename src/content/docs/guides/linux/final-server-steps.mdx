@@ -54,8 +54,8 @@ tmux new-session -d -s authserver './authserver'
 # Check that the authserver session is running
 tmux ls
 
-# Start the worldserver in interactive mode
-./worldserver
+# Start the worldserver in a detached tmux session
+tmux new-session -d -s worldserver'./worldserver'
 ```
 ---
 
