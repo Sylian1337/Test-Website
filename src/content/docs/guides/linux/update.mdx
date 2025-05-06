@@ -68,9 +68,6 @@ cp -r ~/SylCore/etc/*.conf ~/SylCore/backup_$(date +%Y%m%d_%H%M%S)/
 # Navigate to the repository directory
 cd ~/SylCore-WoTLK
 
-# Save any local changes
-git stash
-
 # Get the latest changes
 git fetch origin
 git pull origin master  # or whatever branch you're using
