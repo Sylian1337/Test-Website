@@ -50,6 +50,13 @@ export default defineConfig({
             
           ],
         },
+
+        {
+          label: 'General',
+          items: [
+            { label: 'GM Commands', link: 'general/gm-commands' },
+          ],
+        },
       ],
     }),
   ]
